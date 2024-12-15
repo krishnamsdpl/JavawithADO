@@ -46,7 +46,7 @@ CMD ["java", "-jar", "myapp.jar"]```
 ## Build Docker Image Locally
 To test your Dockerfile locally, run:
    
-  '''docker build -t <your-docker-image-name> .
-  docker run -p 8080:8080 <your-docker-image-name>'''
+  ```docker build -t <your-docker-image-name> .
+  docker run -p 8080:8080 <your-docker-image-name>```
 
 

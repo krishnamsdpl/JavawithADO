@@ -18,21 +18,24 @@ Ensure your Java application is ready for deployment. If you're using a build to
  If using Spring Boot, ensure your application can run locally with an embedded server like Tomcat or Jetty.
 
 ## 2. Dockerize Your Java Application
-'''Create a Dockerfile in the root of your project to define how your application will be built and run in Docker.
 
-Example Dockerfile for a Spring Boot Java application:
+
+```dockerfile
 # Use a base image with OpenJDK
-FROM openjdk:11-jre-slim
+FROM openjdk:17-jdk-slim
 
-# Add the JAR file created by Maven/Gradle build
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+# Set the working directory inside the container
+WORKDIR /app
 
-# Expose the port the app will run on
+# Copy the JAR file from the target directory into the container
+COPY target/myapp.jar myapp.jar
+
+# Expose the port your app runs on (usually 8080 for Spring Boot)
 EXPOSE 8080
 
-# Define the command to run the application
-ENTRYPOINT ["java", "-jar", "/app.jar"] '''
+# Define the command to run your app
+CMD ["java", "-jar", "myapp.jar"]
+
 
 
 

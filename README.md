@@ -34,7 +34,8 @@ COPY target/myapp.jar myapp.jar
 EXPOSE 8080
 
 # Define the command to run your app
-CMD ["java", "-jar", "myapp.jar"]```
+CMD ["java", "-jar", "myapp.jar"]
+```
 
 ## Explanation:
 -- "FROM openjdk:11-jre-slim": Base image with Java 11 runtime.
@@ -46,7 +47,9 @@ CMD ["java", "-jar", "myapp.jar"]```
 ## Build Docker Image Locally
 To test your Dockerfile locally, run:
    
-  ```docker build -t <your-docker-image-name> .
-  docker run -p 8080:8080 <your-docker-image-name>```
+  ```
+docker build -t <your-docker-image-name> .
+ docker run -p 8080:8080 <your-docker-image-name>
+```
 
 

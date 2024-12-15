@@ -80,6 +80,7 @@ To access the AKS cluster, configure kubectl to use the credentials:
 az aks get-credentials --resource-group <your-resource-group> --name <aks-cluster-name>
 ```
 Step 3: Set up Kubernetes Deployment YAML File
+
 Create a Kubernetes deployment and service YAML file (e.g., deployment.yaml):
 
 ```
@@ -103,16 +104,4 @@ spec:
           ports:
             - containerPort: 8080
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: java-app-service
-spec:
-  selector:
-    app: java-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: LoadBalancer
 ```

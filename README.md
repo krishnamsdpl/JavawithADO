@@ -83,7 +83,7 @@ Step 3: Set up Kubernetes Deployment YAML File
 
 Create a Kubernetes deployment and service YAML file (e.g., deployment.yaml):
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -103,8 +103,7 @@ spec:
           image: <your-acr-name>.azurecr.io/<your-image-name>:<tag>
           ports:
             - containerPort: 8080
-```
-```
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -117,6 +116,4 @@ spec:
       port: 80
       targetPort: 8080
   type: LoadBalancer
-
-
 ```

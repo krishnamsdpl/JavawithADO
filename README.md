@@ -51,5 +51,67 @@ To test your Dockerfile locally, run:
 docker build -t <your-docker-image-name> .
  docker run -p 8080:8080 <your-docker-image-name>
 ```
+## 3. Push the Docker Image to Azure Container Registry (ACR)
+Step 1: Log into Azure CLI and ACR
+```
+az login
+az acr login --name <your-acr-name>
+```
+Step 2: Build the Docker image locally (if not already built) and tag it for ACR
+```
+docker build -t <your-acr-name>.azurecr.io/<your-image-name>:<tag> .
+```
+Step 3: Push the Docker image to ACR
+```
+docker push <your-acr-name>.azurecr.io/<your-image-name>:<tag>
+```
+Now your Docker image is stored in Azure Container Registry.
 
-
+## 4. Set Up Azure Kubernetes Service (AKS)
+Step 1: Create AKS Cluster
+If you don't already have an AKS cluster, create one using the Azure CLI:
+```
+az aks create --resource-group <your-resource-group> --name <aks-cluster-name> --node-count 3 --enable-addons monitoring --generate-ssh-keys
+```
+Step 2: Get AKS Credentials
+```
+To access the AKS cluster, configure kubectl to use the credentials:
+```
+az aks get-credentials --resource-group <your-resource-group> --name <aks-cluster-name>
+```
+Step 3: Set up Kubernetes Deployment YAML File
+Create a Kubernetes deployment and service YAML file (e.g., deployment.yaml):
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-app
+  template:
+    metadata:
+      labels:
+        app: java-app
+    spec:
+      containers:
+        - name: java-app
+          image: <your-acr-name>.azurecr.io/<your-image-name>:<tag>
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-app-service
+spec:
+  selector:
+    app: java-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+```

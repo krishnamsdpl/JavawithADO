@@ -34,7 +34,7 @@ COPY target/myapp.jar myapp.jar
 EXPOSE 8080
 
 # Define the command to run your app
-CMD ["java", "-jar", "myapp.jar"]
+CMD ["java", "-jar", "myapp.jar"] ```
 
 ## Explanation:
 -- "FROM openjdk:11-jre-slim": Base image with Java 11 runtime.

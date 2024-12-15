@@ -37,5 +37,13 @@ EXPOSE 8080
 CMD ["java", "-jar", "myapp.jar"]
 
 
+## Explanation:
+-- "FROM openjdk:11-jre-slim": Base image with Java 11 runtime.
+-- "ARG JAR_FILE=target/*.jar:" Specifies the location of the built JAR file.
+-- "COPY ${JAR_FILE} app.jar": Copies the JAR into the container.
+-- "EXPOSE 8080": Exposes port 8080 where the application runs.
+-- "ENTRYPOINT ["java", "-jar", "/app.jar"]": Runs the Java application when the container starts.
+
+
 
 

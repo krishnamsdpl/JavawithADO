@@ -74,7 +74,7 @@ If you don't already have an AKS cluster, create one using the Azure CLI:
 az aks create --resource-group <your-resource-group> --name <aks-cluster-name> --node-count 3 --enable-addons monitoring --generate-ssh-keys
 ```
 Step 2: Get AKS Credentials
-```
+
 To access the AKS cluster, configure kubectl to use the credentials:
 ```
 az aks get-credentials --resource-group <your-resource-group> --name <aks-cluster-name>
@@ -106,7 +106,7 @@ spec:
             - containerPort: 8080
 
 ```
-Service Configuration
+### Service Configuration
 ```yaml
 apiVersion: v1
 kind: Service

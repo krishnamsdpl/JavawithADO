@@ -10,3 +10,9 @@
 - **Azure Container Registry (ACR)**: Set up ACR to store Docker images.
 - **Database**: A database (e.g., Azure SQL, MySQL, etc.) that your Java app connects to.
 
+## Prepare Your Java Application
+Ensure your Java application is ready for deployment. If you're using a build tool like Maven or Gradle, make sure your project can be built successfully using:
+
+mvn clean install (for Maven)
+./gradlew build (for Gradle)
+If using Spring Boot, ensure your application can run locally with an embedded server like Tomcat or Jetty.

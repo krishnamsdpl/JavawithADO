@@ -43,6 +43,10 @@ CMD ["java", "-jar", "myapp.jar"] ```
 -- "EXPOSE 8080": Exposes port 8080 where the application runs.
 -- "ENTRYPOINT ["java", "-jar", "/app.jar"]": Runs the Java application when the container starts.
 
-
+## Build Docker Image Locally
+To test your Dockerfile locally, run:
+   
+  docker build -t <your-docker-image-name> .
+  docker run -p 8080:8080 <your-docker-image-name>
 
 

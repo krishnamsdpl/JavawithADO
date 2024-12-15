@@ -81,6 +81,7 @@ az aks get-credentials --resource-group <your-resource-group> --name <aks-cluste
 ```
 Step 3: Set up Kubernetes Deployment YAML File
 Create a Kubernetes deployment and service YAML file (e.g., deployment.yaml):
+
 ```
 apiVersion: apps/v1
 kind: Deployment

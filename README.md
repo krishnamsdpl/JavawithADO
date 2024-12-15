@@ -101,7 +101,7 @@ spec:
           image: <your-acr-name>.azurecr.io/<your-image-name>:<tag>
           ports:
             - containerPort: 8080
----
+
 apiVersion: v1
 kind: Service
 metadata:

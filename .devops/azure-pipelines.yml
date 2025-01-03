@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: java-app
+  template:
+    metadata:
+      labels:
+        app: java-app
+    spec:
+      containers:
+      - name: java-app
+        image: yourregistry.azurecr.io/your-app:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: "<mysql-host>"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: "<db-name>"
+        - name: DB_USER
+          value: "<db-user>"
+        - name: DB_PASSWORD
+          value: "<db-password>"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-app-service
+spec:
+  selector:
+    app: java-app
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
